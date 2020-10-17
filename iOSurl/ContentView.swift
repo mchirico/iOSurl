@@ -10,13 +10,14 @@ import SwiftUI
 struct ContentView: View {
     @State var count: Int64 = 0
     @State var label0: String = "Label "
+    @State var data: String = "Data..."
     var body: some View {
         VStack{
             HStack {
                 VStack {
                     GroupBox(label: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Label@*/Text(self.label0)
                                 .padding(.leading)/*@END_MENU_TOKEN@*/) {
-                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Data...")
+                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text(self.data)
                             
                             .fontWeight(.heavy)/*@END_MENU_TOKEN@*/
                             .padding([.leading,.trailing],20)
@@ -37,7 +38,6 @@ struct ContentView: View {
                     }
                     Button(action: {
                         self.count += 1
-                        self.label0 = "Count: \(self.count)"
                         
                         // Example 1
                         // mySession(url: "https://aibot.cwxstat.io/")
@@ -51,6 +51,7 @@ struct ContentView: View {
                                 print(result)
                                 DispatchQueue.main.async {
                                     self.label0 =  result
+                                    self.data = result
                                 }
                                 
                             } onFailure: {
@@ -74,7 +75,7 @@ struct ContentView: View {
                 Spacer()
             }
             Divider()
-            Text("Hello, world!")
+            Text("Count: \(self.count)")
                 .padding([.leading,.trailing],20)
                 .padding([.top,.bottom],10)
                 .background(Color.blue)
