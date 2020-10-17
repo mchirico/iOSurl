@@ -11,6 +11,8 @@ struct ContentView: View {
     @State var count: Int64 = 0
     @State var label0: String = "Label "
     @State var data: String = "Data..."
+    @State private var stepper = 0
+
     var body: some View {
         VStack{
             HStack {
@@ -27,8 +29,8 @@ struct ContentView: View {
                             .cornerRadius(15)
                             .shadow(radius: 15)
                     }
-                    Stepper(value: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(4)/*@END_MENU_TOKEN@*/, in: 0...100) {
-                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Label@*/Text("Count")/*@END_MENU_TOKEN@*/
+                    Stepper(value: $stepper, in: 0...100) {
+                        Text("Count \(self.stepper)")
                             .padding([.leading,.trailing],20)
                             .padding([.top,.bottom],10)
                             .background(Color.blue)
