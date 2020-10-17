@@ -38,6 +38,27 @@ struct ContentView: View {
                     Button(action: {
                         self.count += 1
                         self.label0 = "Count: \(self.count)"
+                        
+                        // Example 1
+                        // mySession(url: "https://aibot.cwxstat.io/")
+                        
+                        
+                        // Example 2 Completion Handler
+                        let queue = OperationQueue()
+                        queue.addOperation {
+                            let sess = Session(url: "https://aibot.cwxstat.io/")
+                            sess.Get(){ result in
+                                print(result)
+                                DispatchQueue.main.async {
+                                    self.label0 =  result
+                                }
+                                
+                            } onFailure: {
+                                print("Couldn't download the next picture.")
+                            }
+                        }
+                        
+                        
                     }) {
                         Text("Button 0")
                             .padding([.leading,.trailing],20)
@@ -64,6 +85,9 @@ struct ContentView: View {
             Spacer()
         }}
 }
+
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
