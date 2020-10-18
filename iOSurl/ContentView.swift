@@ -7,12 +7,27 @@
 
 import SwiftUI
 
+
+public var screenWidth: CGFloat {
+    return UIScreen.main.bounds.width
+}
+
+public var screenHeight: CGFloat {
+    return UIScreen.main.bounds.height
+}
+
 struct ContentView: View {
     @State var count: Int64 = 0
     @State var label0: String = "Label "
     @State var data: String = "Data..."
-    @State private var stepper = 0
-
+    @State var stepper = 0
+    @State var jumpToSegue: Bool = false
+    @State var jumpToSegue2: Bool = false
+    
+    @State var viewState = CGSize(width: screenWidth, height: 0)
+    @State var MainviewState = CGSize.zero
+    
+    
     var body: some View {
         VStack{
             HStack {
@@ -85,8 +100,68 @@ struct ContentView: View {
                 .cornerRadius(15)
                 .shadow(radius: 15)
                 .padding()
-            Spacer()
+            HStack {
+                VStack {
+                    GroupBox(label: Text("Section")
+                                .padding([.leading,.trailing],20)
+                                .padding([.top,.bottom],10)
+                                .background(Color.green)
+                                .foregroundColor(Color.black)
+                                .cornerRadius(15)
+                                .shadow(radius: 15)
+                                .multilineTextAlignment(.center)
+                    )
+                    {
+                        Button(action: {
+                            self.jumpToSegue = true
+                        }) {
+                            Text("Go to Segue")
+                                .padding([.leading,.trailing],30)
+                                .padding([.top,.bottom],20)
+                                .background(Color.orange)
+                                .foregroundColor(Color.black)
+                                .cornerRadius(25)
+                                .shadow(radius: 25)
+                        }.sheet(isPresented: $jumpToSegue) {
+                            SwiftUIView(count: self.stepper, onDismiss:{
+                                            self.status()} )
+                        }
+                        
+                        Button(action: {
+                            self.jumpToSegue2 = true
+                        }) {
+                            Text("Go to Segue 2")
+                                .padding([.leading,.trailing],30)
+                                .padding([.top,.bottom],20)
+                                .background(Color.orange)
+                                .foregroundColor(Color.black)
+                                .cornerRadius(25)
+                                .shadow(radius: 25)
+                        }.sheet(isPresented: $jumpToSegue2) {
+                            Swift2UIView(count: self.stepper, onDismiss:{
+                                            self.status()} )
+                        }
+                        
+                        .padding([.leading,.trailing],20)
+                        .padding([.top,.bottom],10)
+                        .background(Color.green)
+                        .foregroundColor(Color.black)
+                        .cornerRadius(15)
+                        .shadow(radius: 15)
+                        .multilineTextAlignment(.center)
+                    }
+                    
+                }
+                Spacer()
+            }
         }}
+    
+    func status(){
+        
+        self.viewState = CGSize(width: 0, height: 0)
+        self.MainviewState = CGSize(width: 0, height: screenHeight)
+        
+    }
 }
 
 
