@@ -106,7 +106,7 @@ struct ContentView: View {
                                         }
                                         
                                     } onFailure: {
-                                        print("Couldn't download the next picture.")
+                                        print("Couldn't download the content.")
                                     }
                                 }
                                 
