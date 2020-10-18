@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Instruments
+      run: xcrun instruments -s devices
     - name: Build
-      run: xcodebuild clean build CODE_SIGNING_REQUIRED=NO -allowProvisioningUpdates
-#    - name: Run tests
-#      #run: wift test -v
+      run: xcodebuild clean build -project iOSurl.xcodeproj -scheme iOSurl CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.7' -quiet
