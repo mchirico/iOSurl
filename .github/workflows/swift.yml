@@ -14,6 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: xcodebuild clean build CODE_SIGNING_REQUIRED=NO
+      run: xcodebuild clean build CODE_SIGNING_REQUIRED=NO -allowProvisioningUpdates
 #    - name: Run tests
 #      #run: wift test -v
