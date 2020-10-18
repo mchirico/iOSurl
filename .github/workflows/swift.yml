@@ -14,6 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: xcodebuild clean build CODE_SIGNING_REQUIRED=NO -allowProvisioningUpdates -project iOSurl.xcodeproj -scheme iOSurl
+      run: xcodebuild clean build -project iOSurl.xcodeproj -scheme iOSurl CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.0' -quiet
 #    - name: Run tests
 #      #run: wift test -v
