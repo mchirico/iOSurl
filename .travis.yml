@@ -14,7 +14,7 @@ matrix:
     - pwd
     - ls -ltra
     - xcrun instruments -s devices
-    - xcodebuild clean test -project iOSurl.xcodeproj -scheme iOSurl -destination "platform=iOS Simulator,name=iPhone X,OS=11.4" -quiet
+    - xcodebuild clean test -project iOSurl.xcodeproj -scheme iOSurl -destination "platform=iOS Simulator,name=iPhone X,OS=14.0" -quiet
     after_success:
     - bash <(curl -s https://codecov.io/bash)
  
