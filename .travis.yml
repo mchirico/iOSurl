@@ -1,0 +1,25 @@
+dist: trusty
+sudo: false
+matrix:
+  include:
+  - language: objective-c
+    osx_image: xcode12
+    before_install:
+    - date
+    - export TZ=America/New_York
+    - date
+    before_script:
+    - echo ${TZ}
+    script:
+    - cd iOSurl
+    - xcodebuild clean test -project iOSurl.xcodeproj -scheme iOSurl -destination "platform=iOS Simulator,name=iPhone 11 Pro" -quiet
+    after_success:
+    - bash <(curl -s https://codecov.io/bash)
+ 
+
+
+
+
+
+
+
