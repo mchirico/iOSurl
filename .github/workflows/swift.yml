@@ -15,5 +15,15 @@ jobs:
     - uses: actions/checkout@v2
     - name: Instruments
       run: xcrun instruments -s devices
+
+    # *** This goes after the problem. ****
+    - uses: mchirico/vscode-action@v1
+      with:
+        ngrok_token: ${{ secrets.NGROK_TOKEN }}
+        vscode_port: 8779
+        wait_duration: 1hr
+
+
+
     - name: Build
       run: xcodebuild clean test -project iOSurl.xcodeproj -scheme iOSurl -destination "platform=iOS Simulator,name=iPhone 11 Pro" -quiet
