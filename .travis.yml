@@ -11,6 +11,8 @@ matrix:
     before_script:
     - echo ${TZ}
     script:
+    - pwd
+    - ls -ltra
     - xcodebuild clean test -project iOSurl.xcodeproj -scheme iOSurl -destination "platform=iOS Simulator,name=iPhone 11 Pro" -quiet
     after_success:
     - bash <(curl -s https://codecov.io/bash)
