@@ -13,6 +13,7 @@ matrix:
     script:
     - pwd
     - ls -ltra
+    - xcrun instruments -s devices
     - xcodebuild clean test -project iOSurl.xcodeproj -scheme iOSurl -destination "platform=iOS Simulator,name=iPhone 11 Pro" -quiet
     after_success:
     - bash <(curl -s https://codecov.io/bash)
