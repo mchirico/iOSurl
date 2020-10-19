@@ -16,6 +16,8 @@
 		B0188F9E253B2698003279A7 /* URLsession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0188F9D253B2698003279A7 /* URLsession.swift */; };
 		B02A1E5A253C652D0074C4FC /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A1E59253C652D0074C4FC /* SwiftUIView.swift */; };
 		B02A1E5F253C6CB60074C4FC /* Swift2UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A1E5E253C6CB60074C4FC /* Swift2UIView.swift */; };
+		B02A1E74253E184F0074C4FC /* sqlitebroker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A1E73253E184F0074C4FC /* sqlitebroker.swift */; };
+		B02A1E7C253E18B20074C4FC /* SQLBroker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A1E7B253E18B20074C4FC /* SQLBroker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		B0188F9D253B2698003279A7 /* URLsession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLsession.swift; sourceTree = "<group>"; };
 		B02A1E59253C652D0074C4FC /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		B02A1E5E253C6CB60074C4FC /* Swift2UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift2UIView.swift; sourceTree = "<group>"; };
+		B02A1E73253E184F0074C4FC /* sqlitebroker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sqlitebroker.swift; sourceTree = "<group>"; };
+		B02A1E7B253E18B20074C4FC /* SQLBroker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLBroker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		B0188ED4253A360D003279A7 /* iOSurl */ = {
 			isa = PBXGroup;
 			children = (
+				B02A1E72253E18320074C4FC /* SQLBroker */,
 				B0188F9C253B2667003279A7 /* URL */,
 				B0188ED5253A360D003279A7 /* iOSurlApp.swift */,
 				B02A1E59253C652D0074C4FC /* SwiftUIView.swift */,
@@ -126,6 +131,7 @@
 			children = (
 				B0188EE7253A360F003279A7 /* iOSurlTests.swift */,
 				B0188EE9253A360F003279A7 /* Info.plist */,
+				B02A1E7B253E18B20074C4FC /* SQLBroker.swift */,
 			);
 			path = iOSurlTests;
 			sourceTree = "<group>";
@@ -145,6 +151,14 @@
 				B0188F9D253B2698003279A7 /* URLsession.swift */,
 			);
 			path = URL;
+			sourceTree = "<group>";
+		};
+		B02A1E72253E18320074C4FC /* SQLBroker */ = {
+			isa = PBXGroup;
+			children = (
+				B02A1E73253E184F0074C4FC /* sqlitebroker.swift */,
+			);
+			path = SQLBroker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +294,7 @@
 				B0188F9E253B2698003279A7 /* URLsession.swift in Sources */,
 				B0188ED8253A360D003279A7 /* ContentView.swift in Sources */,
 				B02A1E5A253C652D0074C4FC /* SwiftUIView.swift in Sources */,
+				B02A1E74253E184F0074C4FC /* sqlitebroker.swift in Sources */,
 				B0188ED6253A360D003279A7 /* iOSurlApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0188EE8253A360F003279A7 /* iOSurlTests.swift in Sources */,
+				B02A1E7C253E18B20074C4FC /* SQLBroker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

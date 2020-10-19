@@ -34,7 +34,7 @@ struct Session {
     
 }
 
-
+// Ignore this...
 func mySession(url: String) {
     let configuraion = URLSessionConfiguration.default
     let session = URLSession(configuration: configuraion)
