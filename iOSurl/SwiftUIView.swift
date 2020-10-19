@@ -13,33 +13,39 @@ struct SwiftUIView: View {
     var onDismiss: () -> ()
     
     @State var result = [String]()
+    @State var id:Int = 0
     
     var body: some View {
         VStack {
             ScrollView(.horizontal) {
                 HStack(spacing: 20) {
-                        ForEach(0..<10) {
-                            Text("Item \($0)")
-                                .foregroundColor(.white)
-                                .font(.largeTitle)
-                                .frame(width: 200, height: 200)
-                                .background(Color.red)
-                        }
+                    
+                    ForEach(self.result, id: \.self) {
+                        
+                        Text("here: \($0)")
+                            .foregroundColor(.white)
+                            .font(.caption)
+                            .frame(width: 200, height: 200)
+                            .background(Color.red)
                     }
+                    
+                    
+                    
+                }
             }
             VStack {
                 Text("Buttons: \(self.count)")
                 
                 Button(action: {
-
-                    GetAddData(){ result in
+                    self.id+=1
+                    GetAddData(id: self.id){ result in
                         print(result)
                         DispatchQueue.main.async {
                             self.result =  result
                             for i in self.result {
                                 print(i)
                             }
-                           
+                            
                         }
                         
                     } onFailure: {
@@ -58,15 +64,15 @@ struct SwiftUIView: View {
                 
                 
                 Button(action: {
-
-                    ClearGetAddData(){ result in
+                    self.id=0
+                    ClearGetAddData(id: self.id){ result in
                         print(result)
                         DispatchQueue.main.async {
                             self.result =  result
                             for i in self.result {
                                 print(i)
                             }
-                           
+                            
                         }
                         
                     } onFailure: {
@@ -87,10 +93,11 @@ struct SwiftUIView: View {
                 
                 
             }
+            
             if self.result.count > 3 {
                 Text("here: \(self.result[3])")
             }
-
+            
         }
     }
 }
@@ -103,20 +110,22 @@ struct SwiftUIView_Previews: PreviewProvider {
 
 
 
-func GetAddData(completion:   (_ result: [String])  -> Void, onFailure: () -> Void)  {
+func GetAddData(id: Int, completion:   (_ result: [String])  -> Void, onFailure: () -> Void)  {
     var output = [String]()
     
+    
     let db = SqliteBroker()
-
+    
     let table = "swiftUIView.sqlite"
     var scmd = "create table IF NOT EXISTS junk (id int, msg text, row int, timeStamp text)"
     db.sqlExe(table: table,stmt: scmd)
     
-    let timestamp = NSDate().timeIntervalSince1970
-    scmd = "insert into junk (id,msg,row,timeStamp) values (0,'worked',1,'\(timestamp)')"
+    //let timestamp = NSDate().timeIntervalSince1970
+    let timestamp = NSDate()
+    scmd = "insert into junk (id,msg,row,timeStamp) values (\(id),'worked',1,'\(timestamp)')"
     db.sqlExe(table: table,stmt: scmd)
     
-    scmd = "select * from junk"
+    scmd = "select * from junk order by timeStamp"
     let result = db.sqlQuery(table: table, stmt: scmd)
     for row in result {
         output.append("\(row.id) \(row.timeStamp)")
@@ -124,24 +133,25 @@ func GetAddData(completion:   (_ result: [String])  -> Void, onFailure: () -> Vo
     completion(output)
 }
 
-func ClearGetAddData(completion:   (_ result: [String])  -> Void, onFailure: () -> Void)  {
+func ClearGetAddData(id: Int,completion:   (_ result: [String])  -> Void, onFailure: () -> Void)  {
     var output = [String]()
     
     let db = SqliteBroker()
-
+    
     let table = "swiftUIView.sqlite"
     var scmd = "drop table IF EXISTS junk"
     db.sqlExe(table: table,stmt: scmd)
     
-
+    
     scmd = "create table IF NOT EXISTS junk (id int, msg text, row int, timeStamp text)"
     db.sqlExe(table: table,stmt: scmd)
     
     
     db.sqlExe(table: table,stmt: scmd)
     
-    let timestamp = NSDate().timeIntervalSince1970
-    scmd = "insert into junk (id,msg,row,timeStamp) values (0,'worked',1,'\(timestamp)')"
+    //let timestamp = NSDate().timeIntervalSince1970
+    let timestamp = NSDate()
+    scmd = "insert into junk (id,msg,row,timeStamp) values (\(id),'worked',1,'\(timestamp)')"
     db.sqlExe(table: table,stmt: scmd)
     
     scmd = "select * from junk"
@@ -151,3 +161,4 @@ func ClearGetAddData(completion:   (_ result: [String])  -> Void, onFailure: () 
     }
     completion(output)
 }
+
