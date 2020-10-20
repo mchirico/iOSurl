@@ -116,17 +116,17 @@ func GetAddData(id: Int, completion:   (_ result: [String])  -> Void, onFailure:
     
     let db = SqliteBroker()
     
-    let table = "swiftUIView.sqlite"
+    let file = "swiftUIView.sqlite"
     var scmd = "create table IF NOT EXISTS junk (id int, msg text, row int, timeStamp text)"
-    db.sqlExe(table: table,stmt: scmd)
+    db.sqlExe(file: file,stmt: scmd)
     
     //let timestamp = NSDate().timeIntervalSince1970
     let timestamp = NSDate()
     scmd = "insert into junk (id,msg,row,timeStamp) values (\(id),'worked',1,'\(timestamp)')"
-    db.sqlExe(table: table,stmt: scmd)
+    db.sqlExe(file: file,stmt: scmd)
     
     scmd = "select * from junk order by timeStamp"
-    let result = db.sqlQuery(table: table, stmt: scmd)
+    let result = db.sqlQuery(file: file, stmt: scmd)
     for row in result {
         output.append("\(row.id) \(row.timeStamp)")
     }
@@ -138,24 +138,24 @@ func ClearGetAddData(id: Int,completion:   (_ result: [String])  -> Void, onFail
     
     let db = SqliteBroker()
     
-    let table = "swiftUIView.sqlite"
+    let file = "swiftUIView.sqlite"
     var scmd = "drop table IF EXISTS junk"
-    db.sqlExe(table: table,stmt: scmd)
+    db.sqlExe(file: file,stmt: scmd)
     
     
     scmd = "create table IF NOT EXISTS junk (id int, msg text, row int, timeStamp text)"
-    db.sqlExe(table: table,stmt: scmd)
+    db.sqlExe(file: file,stmt: scmd)
     
     
-    db.sqlExe(table: table,stmt: scmd)
+    db.sqlExe(file: file,stmt: scmd)
     
     //let timestamp = NSDate().timeIntervalSince1970
     let timestamp = NSDate()
     scmd = "insert into junk (id,msg,row,timeStamp) values (\(id),'worked',1,'\(timestamp)')"
-    db.sqlExe(table: table,stmt: scmd)
+    db.sqlExe(file: file,stmt: scmd)
     
     scmd = "select * from junk"
-    let result = db.sqlQuery(table: table, stmt: scmd)
+    let result = db.sqlQuery(file: file, stmt: scmd)
     for row in result {
         output.append("\(row.id) \(row.timeStamp)")
     }

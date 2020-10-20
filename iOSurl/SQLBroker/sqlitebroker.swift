@@ -524,10 +524,10 @@ public class SqliteBroker {
      see: sqliteTests.swift
      
      */
-    public func sqlExe(table: String, stmt: String) {
+    public func sqlExe(file: String, stmt: String) {
         
         let documents = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let fileURL = documents.appendingPathComponent(table)
+        let fileURL = documents.appendingPathComponent(file)
         
         if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
             print("error opening database")
@@ -552,11 +552,11 @@ public class SqliteBroker {
         var timeStamp: String
     }
     
-    func sqlQuery(table: String, stmt: String) -> [Result] {
+    func sqlQuery(file: String, stmt: String) -> [Result] {
         var statement: OpaquePointer?
         
         let documents = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        let fileURL = documents.appendingPathComponent(table)
+        let fileURL = documents.appendingPathComponent(file)
         
         if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
             print("error opening database")
