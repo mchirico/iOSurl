@@ -33,7 +33,7 @@ class SQLBroker: XCTestCase {
 
     func testSqliteBroker() {
             let db = SqliteBroker()
-            db.myStart()
+
             
             var scmd = "DROP TABLE IF EXISTS junk"
             let file = "beta.sqlite"
