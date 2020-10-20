@@ -33,21 +33,21 @@ class SQLBroker: XCTestCase {
 
     func testSqliteBroker() {
             let db = SqliteBroker()
-            db.myStart()
+
             
             var scmd = "DROP TABLE IF EXISTS junk"
-            let table = "beta.sqlite"
-            db.sqlExe(table: table, stmt: scmd)
+            let file = "beta.sqlite"
+            db.sqlExe(file: file, stmt: scmd)
             
             scmd = "create table junk (id int, msg text, row int, timeStamp text)"
-            db.sqlExe(table: table,stmt: scmd)
+            db.sqlExe(file: file,stmt: scmd)
             
             let timestamp = NSDate().timeIntervalSince1970
             scmd = "insert into junk (id,msg,row,timeStamp) values (0,'worked',1,'\(timestamp)')"
-            db.sqlExe(table: table,stmt: scmd)
+            db.sqlExe(file: file,stmt: scmd)
             
             scmd = "select * from junk"
-            let result = db.sqlQuery(table: table, stmt: scmd)
+            let result = db.sqlQuery(file: file, stmt: scmd)
             print("result: \(result[0].msg)")
             
             XCTAssertEqual(result[0].id, 0)
