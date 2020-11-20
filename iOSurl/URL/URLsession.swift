@@ -12,9 +12,12 @@ struct Session {
     
     func Get(completion: @escaping  (_ result: String)  -> Void, onFailure: () -> Void)  {
         let configuraion = URLSessionConfiguration.default
+        configuraion.httpAdditionalHeaders = ["Authorization" : "tacoMouse_iOSurl"]
+
         let session = URLSession(configuration: configuraion)
-        guard let _url = URL(string: url) else { fatalError()}
         
+        guard let _url = URL(string: url) else { fatalError()}
+
         let task = session.dataTask(with: _url) { data, response, error in
             guard let httpResponse = response as? HTTPURLResponse,
                   (200..<300).contains(httpResponse.statusCode) else {

@@ -97,7 +97,7 @@ struct ContentView: View {
                                 // Example 2 Completion Handler
                                 let queue = OperationQueue()
                                 queue.addOperation {
-                                    let sess = Session(url: "https://aibot.cwxstat.io/")
+                                    let sess = Session(url: "https://tasks.cwxstat.io/")
                                     sess.Get(){ result in
                                         print(result)
                                         DispatchQueue.main.async {
